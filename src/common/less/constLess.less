@@ -1,0 +1,49 @@
+//字体大小定义
+@f10:12px;
+@f12:12px;
+@f14:14px;
+@f16:16px;
+@f18:18px;
+//颜色大小定义
+@activeCol:#f01414;
+//关于1px的问题,其中包括dpi
+.border-1px(@borderColor:#ccc){
+  position: relative;
+  &:after{
+    position: absolute;
+    left:0;
+    bottom: 0;
+    width:100%;
+    border-top:1px solid @borderColor;
+    content:''
+  }
+}
+.border-none{
+  &:after{
+    border:none;
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio:1.5){
+  .border-1px{
+    &::after{
+      -webkit-transform:scaleY(0.7);
+    }
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio:2){
+  .border-1px{
+    &::after{
+      -webkit-transform:scaleY(0.5);
+    }
+  }
+}
+
+//处理图片的问题
+.bg-img(@fileName,@bgUrl){
+  background-image:url('../../components/@{fileName}/@{bgUrl}@2x.png');
+}
+@media(-webkit-min-device-pixel-ratio:3),(min-device-pixel-ratio: 3){
+  .bg-img(@bgUrl){
+    background-image:url('../../components/@{fileName}/@{bgUrl}@3x.png');
+  }
+}
